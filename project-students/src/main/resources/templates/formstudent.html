@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Form student</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="col-md-6 offset-3">
+        <form method="post" th:action="@{/admin/save}">
+            <div >
+                <label for="firstName">First Name</label>
+                <input id="firstName" class="form-control" type="text" name="firstName" th:value="${student.firstName}">
+                <span class="text-danger"  th:errors="${student.firstName}"></span>
+            </div>
+            <div >
+                <label for="lastName">Last Name</label>
+                <input id="lastName" class="form-control" type="text" name="lastName" th:value="${student.lastName}">
+                <span class="text-danger"  th:errors="${student.lastName}"></span>
+            </div>
+            <div >
+                <label for="Email">Email</label>
+                <input id="Email" class="form-control" type="text" name="Email" th:value="${student.Email}">
+                <span class="text-danger"  th:errors="${student.Email}"></span>
+            </div>
+            <div>
+                <label >Date Naissance</label>
+                <input class="form-control" type="date" name="dateNaissance" th:value="${student.dateNaissance}">
+                <span class="text-danger"  th:errors="${student.dateNaissance}"></span>
+            </div>
+
+           <!-- <div>
+                <fieldset data-role="controlgroup">
+                    <label for="male" >Male</label>
+                    <input id="male" type="radio" name="genre"   th:value="${student.genre}" checked>
+                    <label for="female" >Female</label>
+                    <input id="female" type="radio" name="genre"  th:value="${student.genre}" checked>
+                </fieldset>
+            </div>-->
+            <div class="mb-3">
+                <label for="genre" class="form-label fw-bold">student gender : </label>
+                <select class="form-select" id="genre" name="genre">
+                    <option selected disabled> Choisir le genre...</option>
+                    <option value="Male" th:selected="${student.genre=='Male'}"> Male</option>
+                    <option value="Female" th:selected="${student.genre=='Female'}"> Female</option>
+                </select>
+                <small class="text-danger" th:errors="${student.genre}"></small>
+            </div>
+
+            <div >
+                <label>regle</label>
+                <input  type="checkbox" name="regle" th:checked="${student.regle}">
+                <span class="text-danger" th:errors="${student.regle}"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary" >Save</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

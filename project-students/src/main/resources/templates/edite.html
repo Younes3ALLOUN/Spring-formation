@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Form student</title>
+    <style>
+        #id1{
+            background-color: white;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+</head>
+<body>
+<div layout:fragment="content">
+
+        <div id ="id1" class="col-md-6 offset-3">
+            <form method="post" th:action="@{/admin/save(page=${page},keyword=${keyword})}">
+                <div >
+                    <label class="text-primary"  for="Id">ID :</label>
+                    <label class="font-weight-bold" th:text="${student.id}"></label>
+                    <input id="Id" class="form-control" type="hidden" name="Id" th:value="${student.id}">
+
+                </div>
+                <div >
+                    <label class="text-primary font-weight-bold" for="firstName">First Name</label>
+                    <input id="firstName" class="form-control" type="text" name="firstName" th:value="${student.firstName}">
+                    <span class="text-danger"  th:errors="${student.firstName}"></span>
+                </div>
+                <div >
+                    <label class="text-primary font-weight-bold" for="lastName">Last Name</label>
+                    <input id="lastName" class="form-control" type="text" name="lastName" th:value="${student.lastName}">
+                    <span class="text-danger"  th:errors="${student.lastName}"></span>
+                </div>
+                <div >
+                    <label class="text-primary font-weight-bold" for="Email">Email</label>
+                    <input id="Email" class="form-control" type="text" name="Email" th:value="${student.Email}">
+                    <span class="text-danger"  th:errors="${student.Email}"></span>
+                </div>
+                <div>
+                    <label class=" font-weight-bold" >Date Naissance</label>
+                    <input class="form-control" type="date" name="dateNaissance" th:value="${student.dateNaissance}">
+                    <span class="text-danger"  th:errors="${student.dateNaissance}"></span>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="genre" class="text-primary font-weight-bold">student gender : </label>
+                    <select class="form-select" id="genre" name="genre">
+                        <option selected disabled> Choisir le genre...</option>
+                        <option value="Male" th:selected="${student.genre=='Male'}"> Male</option>
+                        <option value="Female" th:selected="${student.genre=='Female'}"> Female</option>
+                    </select>
+                    <small class="text-danger" th:errors="${student.genre}"></small>
+                </div>
+
+                <div >
+                    <label class="text-primary font-weight-bold">regle</label>
+                    <input  type="checkbox" name="regle" th:checked="${student.regle}">
+                    <span class="text-danger" th:errors="${student.regle}"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary" >Save</button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+</body>
+</html>
